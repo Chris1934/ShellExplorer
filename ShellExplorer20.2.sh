@@ -1,16 +1,16 @@
 #!/bin/bash
 
-varstop=0				#Variable to end the programme
-input=0				#Variable to save the user Commands
-listed=0				#Variable to proof if there are Folders or Files in a directory
+varstop=0				#Variable zum beenden des Programms
+input=0				#Variable zum Speichern der Benutzereingaben
+listed=0				#Variable zum Überprüfen, ob sich Dateien in einem Verzeichnis befinden
 h=0					#Variable für die Funktionen hyphensbig und hyphensltl
-yn=0					#Variable for Yes/No inputs
-file=0					#Variable saves the Filetype
-filend=0				#Variable to proof if it's a file or a folder
+yn=0					#Variable für Ja/Nein Eingaben
+file=0					#Variable speichert den Dateityp
+filend=0				#Variable zum überprüfen, ob Datei oder Ordner
 
 reset
 
-hyphensbig() {	#Function to automatically put out the right lenght of big hyphens (=)
+hyphensbig() {	#Funktion zum automatischen ausgeben der großen Trennstriche (=)
 
 while [ "$h" != "$COLUMNS" ];
 	do  
@@ -24,7 +24,7 @@ h=0
 
 }
 
-hyphensltl() {	#Function to automatically put out the right lenght of little hyphens (-)
+hyphensltl() {	#Funktion zum automatischen ausgeben der kleinen Trennstriche (-)
 
 while [ "$h" != "$COLUMNS" ];
 	do  
@@ -39,16 +39,16 @@ h=0
 }
 
 datalist() {
-	echo "Files and Folders in directory" 
+	echo "Dateien und Ordner im Verzeichnis" 
 	echo "$PWD:"
-	hyphensltl	#Function to automatically put out the directory's Files
+	hyphensltl	#Funktion zum automatischen Ausgeben der Ordnerstruktur
 	ls
 }
 
 hyphensbig
-echo "ShellExplorer Version 20.2"
+echo "ShellExplorer Version 20.2" #Begrüßung
 hyphensltl
-echo "To read out the Documentation, type in '#help'"
+echo "Zum Anzeigen der Dokumentation '#help' eingeben"
 hyphensbig
 datalist
 
@@ -57,65 +57,67 @@ until [ "$varstop" = "1" ];
 		while true;
 		do
 			hyphensbig
-			read -p "Command: " input					#Input of the User saved in the variable $input
+			read -p "Eingabe: " input					#Eingabe des Benutzers wird in $input gespeichert
 			hyphensbig
 		
 			case "$input" in
 			
-				"#help") echo "The ShellExplorer is a (hopefully) easy to use Datamanager Programme."
-					echo "This Documentation shows all possible Commands, this Programme can handle with."
+				"#help") echo "Der Shellexplorer ist ein (hoffentlich) einfach zu bedienendes Dateimanager Programm."
+					echo "Diese Dokumentation zeigt alle möglichen Befehle, die dieses Programm ausführen kann."
 					hyphensltl
-					echo "Shortcuts:"
+					echo "Kurzbefehle:"
 					hyphensltl
-					echo "In this case, Shortcuts refer to commands that make it easier for the user to use the ShellExplorer or take on important functions (e.g. exiting the program) that have nothing to do with managing files and directories."
-					echo "All shortcuts begin with the character '#'."
+					echo "Als Kurzbefehle sind in diesem Fall Kommandos gemeint, die dem Benutzer das Bedienen des ShellExplorers einfacher machen oder wichtige Funktionen (z.B. Beenden des Programms) übernehmen, die nichts mit dem Verwalten von Dateien und Verzeichnissen zu tun haben."
+					echo "Alle Kurzbefehle beginnen mit dem Zeichen #."
 					hyphensltl
 					echo "#exit\#quit\#q"
-					echo "As the command already shows, you exit the ShellExplorer and the terminal will be cleaned up."
+					echo "Wie der Befehl schon zeigt, beendet man damit den ShellExplorer und das Terminal wird aufgeräumt."
 					hyphensltl
 					echo "#/\#Home"
-					echo "With this command you are forwarded directly to the directory /."
+					echo "Mit diesem Befehl wird man direkt in das Verzeichnis / weitergeleitet."
 					hyphensltl
-					echo "#desktop"
-					echo "This Shortcut causes you to arrive at the "desktop directory"."
+					echo "#desktop\#schreibtisch"
+					echo "Dieser Befehl bewirkt, dass man auf dem "Desktop-Verzeichnis" ankommt."
 					hyphensltl
-					echo "Filemanagement:"
+					echo "Dateiverwaltung:"
 					hyphensltl
-					echo "This includes all commands that are required to manage files and directories (e.g. opening files)."
+					echo "Das schließt alle Kommandos ein, die zum Verwalten von Dateien und Verzeichnissen benötigt werden (z.B. Öffnen von Dateien)."
 					hyphensltl
-					echo "/[Folder]"
-					echo "This command directs you to the next higher folder with the appropriate name."
+					echo "/[Ordner]"
+					echo "Dieser Befehl leitet einem zum nächst höher gelegenem Ordner mit dem passenden Namen."
 					hyphensltl
 					echo "<"
-					echo "This command takes you back to the next lower directory."
+					echo "Mit diesem Kommando kommt man in das nächst tiefere Verzeichnis zurück."
 					hyphensltl
-					echo "[Programmename]"
-					echo "This opens the file with the appropriate name and extension."
-					echo "Not all file types are supported."
+					echo "[Programmname]"
+					echo "Damit öffnet man die Datei mit dem passenden Namen und Endung."
+					echo "Nicht alle Dateitypen werden unterstützt."
 				;;
 				
 				"#exit") ;&
 				"#Exit") ;&
 				"#q") ;&
 				"#quit") ;&
-				"#Quit") varstop=1			#Loop will break
+				"#Quit") varstop=1			#Schleife wird unterbrochen
 					break
 				;;
 				"#/") ;&
 				"#Home") ;&
 				"#home") cd /
-					datalist			#to get faster to /
+					datalist			#um schneller nach / zu kommen
 				;;
 				"#desktop") ;&
-				"#Desktop") cd $HOME/Desktop/
-						datalist
+				"#Desktop") ;&
+				"#schreibtisch") ;&
+				"#Schreibtisch")	cd $HOME/Schreibtisch/
+							datalist
 				;;
 				"<")	cd ..
-					datalist			#to go back in directory
+					datalist			#um zum vorherigen Punkt zurückzugehen
 				;; 
 				*)	filend=$(find $PWD -name $input 2>/dev/null)
 				
-					if [ "$filend" = "$PWD/$input" ];
+					if [ "$filend" = "$PWD/$input" ]; #Erkennung der Dateien funktioniert noch nicht...
 						then
 							case "${input/*./}" in
 								
@@ -131,16 +133,16 @@ until [ "$varstop" = "1" ];
 								"c++") file="C++"
 								;;
 								"d") ;&
-								"conf") file="Configuration -"
+								"conf") file="Konfigurations -"
 								;;
 								"sh") file="Shell Script -"
 								;;
 
 							esac
 							
-							echo "$input is a "$file" File. Do you want to open it?"
-							read -p "[Y/N]:" yn
-							if [ "$yn" = "Y" ] || [ "$yn" = "y" ];
+							echo "$input ist eine "$file" Datei. Möchten sie diese öffnen?"
+							read -p "[J/N]:" yn
+							if [ "$yn" = "J" ] || [ "$yn" = "j" ];
 								then
 									nano $input
 									yn=0
@@ -150,7 +152,7 @@ until [ "$varstop" = "1" ];
 									break
 								else
 									hyphensltl
-									echo "File won't be opened"
+									echo "Datei wird nicht geöffnet"
 									sleep 0.5
 									hyphensbig
 									datalist
@@ -170,11 +172,11 @@ until [ "$varstop" = "1" ];
 							
 									if [ "$listed" = "" ];
 										then
-											echo "No Files or Folders were found in this directory"
+											echo "Keine Dateien oder Ordner in diesem Verzeichnis gefunden"
 									fi
 					
 								else
-									echo "Directory doesn't exist!"
+									echo "Ordner existiert nicht! Bitte anderes Verzeichnis wählen"
 									hyphensltl
 									ls
 							fi
@@ -185,12 +187,12 @@ done
 
 sleep 1
 
-echo "Programme will be closed..."
+echo "Programm wird geschlossen..."
 sleep 1.2
 
-echo "Terminal will be cleaned..."
+echo "Terminal wird aufgeräumt..."
 sleep 0.8
 
-reset	#Shell will be reseted
+reset	#Shell wird zurückgesetzt
 
-exit	#Programme will be closed
+exit	#Programm wird geschlossen

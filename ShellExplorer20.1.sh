@@ -2,7 +2,7 @@
 
 echo "ShellExplorer Version 1.0
 ================================================"
-echo "Data and folders in this directory:
+echo "Ordner und Dateien in diesem Verzeichnis:
 ------------------------------------------------"
 
 ls
@@ -16,10 +16,10 @@ varstop=0
 until [ "$varstop" = "1" ]
 
 	do
-		read -p "Command: " varnext
+		read -p "Eingabe: " varnext
 		if [ "$varnext" = "Exit" ]
 			then
-				echo "Programme stopped"
+				echo "Programm beendet"
 				varstop=1
 			else
 				if [ "$varnext" = "Home" ]
@@ -39,7 +39,7 @@ until [ "$varstop" = "1" ]
 								cd ./$varnext
 								ls
 							else	
-								echo "Directory not found"
+								echo "Verzeichnis nicht gefunden"
 						fi
 				fi		
 		fi
