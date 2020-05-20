@@ -2,7 +2,7 @@
 
 **ShellExplorer** is an *Shell Script based File Manager* for bash supporting Linux Distributions.
 
-##### ***Using sh Script*** 
+##### ***Using sh Script:*** 
 
 To start using this, you have to download any Version. Then you can easily start it by write following into your terminal:
 
