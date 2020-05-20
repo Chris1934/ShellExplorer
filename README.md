@@ -12,9 +12,14 @@ The directory must be replaced by the folder where you put in the   file and the
 
 ##### *Using deb Package:* 
 
-You yust have to download one of the deb Packages and install it graphical. If you have no Desktop you can type in:
+You yust have to download one of the deb Packages and install it graphical.
+If you doesn't have a Desktop you can type in:
+
 `sudo dpkg -i /directory/ShellExplorer##.#.deb` 
+
 Also here you have to replace /'directory' with the folder, where you put the Package in and the '##.#' with the version. 
 If it's installed you can run it by typing in:
+
 `bash /usr/share/shellexplorer/shellexplorer.sh` 
+
 and it will start.
