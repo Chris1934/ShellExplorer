@@ -4,7 +4,7 @@
 
 ##### ***Using sh Script:*** 
 
-To start using this, you have to download any Version. Then you can easily start it by write following into your terminal:
+To start using this, you have to download any version. Then you can easily start it by write following into your terminal:
 
 `bash /directory/ShellExplorer##.#.sh`
 
@@ -12,7 +12,7 @@ The directory must be replaced by the folder where you put in the   file and the
 
 ##### *Using deb Package:* 
 
-You yust have to download one of the deb Packages and install it graphical.
+You just have to download one of the deb Packages and install it graphical.
 If you doesn't have a Desktop you can type in:
 
 `sudo dpkg -i /directory/ShellExplorer##.#.deb` 
