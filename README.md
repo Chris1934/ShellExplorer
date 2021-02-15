@@ -1,6 +1,6 @@
 # *ShellExplorer*
 
-**ShellExplorer** is an *Shell Script based File Manager* for bash supporting Linux Distributions.
+**ShellExplorer** is a *Shell Script based File Manager* for bash supporting Linux Distributions.
 
 ##### ***Using sh Script:*** 
 
@@ -23,3 +23,11 @@ If it's installed you can run it by typing in:
 `bash /usr/share/shellexplorer/shellexplorer.sh` 
 
 and it will start.
+
+##### *Using C - Source Code*
+
+Download the C - file and compile it, then run it.
+
+##### *Using compiled Version*
+
+Download the file and run it, nothing else needed.
